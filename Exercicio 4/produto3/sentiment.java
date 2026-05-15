@@ -5,12 +5,16 @@ import java.net.http.HttpResponse;
 
 public class sentiment {
 
-    private static final String ENDPOINT = System.getenv("AZURE_LANGUAGE_ENDPOINT");
+    private static final String ENDPOINT = "https://language-ex4-letfarias.cognitiveservices.azure.com";
     private static final String KEY = System.getenv("AZURE_LANGUAGE_KEY");
 
     public static void main(String[] args) throws Exception {
-        String text = "gostei muito do atendimento, foi rápido e eficiente.";
 
+        if (KEY == null || KEY.isBlank()) {
+            throw new RuntimeException("Defina a variável de ambiente AZURE_LANGUAGE_KEY antes de executar.");
+        }
+
+        String text = "gostei muito do atendimento, foi rápido e eficiente.";
         String url = ENDPOINT + "/text/analytics/v3.2/sentiment?opinionMining=true";
 
         String bodyJson =
