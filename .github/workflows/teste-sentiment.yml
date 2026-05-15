@@ -19,10 +19,13 @@ jobs:
 
       - name: Compile
         run: |
-          javac "Exercicio 4/produto3/sentiment.java"
+          cd "Exercicio 4/produto3"
+          ls -la
+          javac sentiment.java
 
       - name: Run
         env:
           AZURE_LANGUAGE_KEY: ${{ secrets.AZURE_LANGUAGE_KEY }}
         run: |
-          java -cp "Exercicio 4/produto3" sentiment
+          cd "Exercicio 4/produto3"
+          java sentiment
