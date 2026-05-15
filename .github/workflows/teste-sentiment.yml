@@ -1,0 +1,25 @@
+name: Test Azure Language (Sentiment)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Compile
+        run: javac Exercício\ 4/produto3/sentiment.java
+
+      - name: Run
+        env:
+          AZURE_LANGUAGE_KEY: ${{ secrets.AZURE_LANGUAGE_KEY }}
+        run: java -cp Exercício\ 4/produto3 sentiment
